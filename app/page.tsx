@@ -12,7 +12,7 @@ export default async function Home() {
         <p>Retouvez ici la liste de mes articles</p>
       </div>
       <div className="p-8">
-        <ul className="flex gap-4 justify-between">
+        <ul className="grid grid-cols-3 gap-4">
           {posts?.map(post => (
             <PostCard key={post.id} title={post.title} content={post.content} date={post.createdAt} />
           ))}

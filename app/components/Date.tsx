@@ -7,7 +7,6 @@ type DateProps = {
 
 export default function Date( { dateString }: DateProps) {
     const dateFR = format(dateString, 'dd MMMM yyyy', {locale: fr})
-    console.log(dateFR)
   return (
     <p>{dateFR}</p>
   )

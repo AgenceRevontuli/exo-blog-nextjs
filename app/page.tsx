@@ -1,7 +1,10 @@
-import Link from 'next/link'
+import PostCard from './components/PostCard'
+import { prisma } from './lib/prismadb'
+ 
+export default async function Home() {
 
+  const posts = await prisma.posts.findMany()
 
-export default function Home() {
   return (
     <main>
       <div className="text-center flex flex-col gap-4 py-12">
@@ -10,13 +13,9 @@ export default function Home() {
       </div>
       <div className="p-8">
         <ul className="flex gap-4 justify-between">
-          <li className="p-4 flex flex-col gap-4 border rounded">
-            <h2 className="text-xl font-bold">Titre du contenu</h2>
-            <p>Résumé du post</p>
-            <Link href={`/posts/2`}>
-              <p>Lire la suite</p>
-            </Link>
-          </li>
+          {posts?.map(post => (
+            <PostCard key={post.id} title={post.title} content={post.content} date={post.createdAt} />
+          ))}
         </ul>
       </div>
     </main>

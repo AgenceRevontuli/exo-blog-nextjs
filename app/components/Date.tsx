@@ -2,7 +2,7 @@ import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
 
 type DateProps = {
-    dateString: Date
+    dateString: any
 }
 
 export default function Date( { dateString }: DateProps) {

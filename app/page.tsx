@@ -3,7 +3,11 @@ import { prisma } from './lib/prismadb'
  
 export default async function Home() {
 
-  const posts = await prisma.posts.findMany()
+  const posts = await prisma.posts.findMany({
+    orderBy:{
+      createdAt: 'desc'
+    }
+  })
 
   return (
     <main>
@@ -14,7 +18,7 @@ export default async function Home() {
       <div className="p-8">
         <ul className="grid grid-cols-3 gap-4">
           {posts?.map(post => (
-            <PostCard key={post.id} title={post.title} content={post.content} date={post.createdAt} />
+            <PostCard key={post.id} title={post.title} content={post.content} date={post.createdAt} id={post.id} />
           ))}
         </ul>
       </div>

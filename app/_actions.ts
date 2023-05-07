@@ -10,3 +10,12 @@ export async function formSubmit(formData: FormData) {
         }
     })
 }
+
+export async function deletePost(id: number) {
+    await prisma.posts.delete({
+        where:{
+                id: id
+        }
+    })
+    revalidatePath('/')
+}
